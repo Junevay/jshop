@@ -1,0 +1,63 @@
+
+<layout name="Common/layout" />
+    <div class="main">
+      <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="">Member</a></li>
+            <li class="active">Order success</li>
+        </ul>
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40">
+          <!-- BEGIN CONTENT -->
+          <div class="col-md-12 col-sm-12">
+            <h1>Order </h1>
+            <!-- BEGIN CHECKOUT PAGE -->
+            <div class="panel-group checkout-page accordion scrollable" id="checkout-page">
+
+              <!-- BEGIN CHECKOUT -->
+              <div id="checkout" class="panel panel-default">
+                <div class="panel-heading">
+                  <h2 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#checkout-page" href="#checkout-content" class="accordion-toggle">
+                      订单提交成功
+                    </a>
+                  </h2>
+                </div>
+                <div id="checkout-content" class="panel-collapse collapse in">
+                  <div class="panel-body row">
+                   <!-- <div class="col-md-6 col-sm-6">
+                      <h3>New Customer</h3>
+                      <p>Checkout Options:</p>
+                      <div class="radio-list">
+                        <label>
+                          <input type="radio" name="account"  value="register"> Register Account
+                        </label>
+                        <label>
+                          <input type="radio" name="account"  value="guest"> Guest Checkout
+                        </label>
+                      </div>
+                      <p>By creating an account you will be able to shop faster, be up to date on an order's status, and keep track of the orders you have previously made.</p>
+                      <button class="btn btn-primary" type="submit" data-toggle="collapse" data-parent="#checkout-page" data-target="#payment-address-content">Continue</button>
+                    </div>-->
+
+                    <div class="success_bd col-md-offset-4">
+                      <p><span></span>订单提交成功，我们将及时为您处理</p>
+                      <p><?php echo $btn; ?></p>
+                      <p class="message">完成支付后，你可以 <a href="<?php echo U('My/order');?>">查看订单状态</a>  <a href="<?php echo U('Index/index'); ?>">继续购物</a> <a href="">问题反馈</a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- END CHECKOUT -->
+
+
+            </div>
+            <!-- END CHECKOUT PAGE -->
+          </div>
+          <!-- END CONTENT -->
+        </div>
+        <!-- END SIDEBAR & CONTENT -->
+      </div>
+    </div>
+

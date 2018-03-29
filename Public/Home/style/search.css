@@ -1,0 +1,21 @@
+.search-code dl{
+    margin: 10px;
+    border-bottom:1px dotted #E7CDAE;
+}
+
+dt{
+    display: inline-block;
+}
+
+dd{
+    display: inline-block;
+    width:100px;
+}
+
+.search-condition dl{
+    margin: 10px 10px;
+}
+
+.search-condition dd{
+    border: 0.5px solid red;
+}

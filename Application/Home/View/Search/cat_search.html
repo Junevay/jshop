@@ -1,0 +1,149 @@
+<layout name="Common/layout" />
+<link  href="__PUBLIC__/Home/style/search.css" rel="stylesheet">
+
+
+    <div class="main">
+      <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="">Store</a></li>
+            <li class="active">Search result</li>
+        </ul>
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40">
+          <!-- BEGIN SIDEBAR -->
+          <include file="Common/siderbar" />
+          <!-- END SIDEBAR -->
+          <!-- BEGIN CONTENT -->
+          <div class="col-md-9 col-sm-7">
+            <div class="content-search margin-bottom-20">
+              <div class="row">
+                <div class="col-md-12 search-condition">
+                  <dl>
+                 <dt> 当前搜索条件：</dt>
+                  <?php
+				// 品牌
+				$brandId = I('get.brand_id');
+				if($brandId): ?>
+                  <dd>
+						品牌：<?php echo ltrim(strstr($brandId, '-'), '-'); ?>
+                    <a href="<?php echo filterUrl('brand_id'); ?>">X</a>
+					</dd>
+                  <?php endif; ?>
+
+                  <?php
+				// 价格
+				$price = I('get.price');
+				if($price): ?>
+                  <dd>
+						价格：<?php echo $price; ?>
+                    <a href="<?php echo filterUrl('price'); ?>">X</a>
+					</dd>
+                  <?php endif; ?>
+
+                  <?php
+				// 筛选属性  参数：/attr_5/android-操作系统/attr_4/2015-10-01-出厂日期
+				// 循环所有的参数
+				foreach ($_GET as $k => $v):
+                  // 如果以attr_开头说明是一个属性的变量
+                  if(strpos($k, 'attr_') === 0) :
+                  $_attrName = strrchr($v, '-'); // 取出属性名称
+                  ?>
+                  <dd>
+						<?php echo ltrim($_attrName, '-'); ?>：<?php echo str_replace($_attrName, '', $v); ?>
+                    <a href="<?php echo filterUrl($k); ?>">X</a>
+					</dd>
+                  <?php endif;endforeach; ?>
+                    </dl>
+                </div>
+                <div class="col-md-6">
+                  <h1><strong>商品筛选</strong></h1>
+                </div>
+                <div class="col-md-6">
+                  <form action="<?php echo U('Search/key_search', '', FALSE); ?>" method="get">
+                    <div class="input-group">
+                      <input id="key" name="key"  type="text" value="<?php echo I('get.key', '请输入商品关键字'); ?>"  class="form-control">
+                      <span class="input-group-btn">
+                      <button class="btn btn-primary"  type="submit">Search</button>
+                    </span>
+                    </div>
+                  </form>
+                </div>
+
+
+                <div class="col-md-12 search-code">
+
+                  <div >
+                    <?php if(!I('get.brand_id') && $searchFilter['brand']): ?>
+                    <dl class="">
+                      <dt >品牌：</dt>
+                      <?php foreach ($searchFilter['brand'] as $k => $v): ?>
+                      <dd ><a href="__SELF__/brand_id/<?php echo $v['brand_id']; ?>-<?php echo $v['brand_name']; ?>"><?php echo $v['brand_name']; ?></a></dd>
+                      <?php endforeach; ?>
+                    </dl>
+                    <?php endif; ?>
+
+                    <?php if(!I('get.price') && !empty($searchFilter['price'])): ?>
+                    <dl class="">
+                      <dt >价格：</dt>
+                      <?php foreach ($searchFilter['price'] as $k => $v): ?>
+                      <dd ><a href="__SELF__/price/<?php echo $v; ?>"><?php echo $v; ?></a></dd>
+                      <?php endforeach; ?>
+                    </dl>
+                    <?php endif; ?>
+
+                    <!-- 筛选属性 -->
+                    <?php foreach ($searchFilter['gaData'] as $k => $v):
+                    // 拼出属性在URL上的名
+                    $attrUrlName = 'attr_'.$v[0]['attr_id'];  // attr_xx
+                    // 如果URL里面已经有这个名字说明已经点击了就跳过不显示
+                    if(isset($_GET[$attrUrlName]))
+                    continue
+                    ?>
+                    <dl class="">
+                      <dt><?php echo $k; ?>：</dt>
+                      <?php foreach ($v as $k1 => $v1): ?>
+                      <dd ><a href="__SELF__/<?php echo $attrUrlName; ?>/<?php echo $v1['attr_value']; ?>-<?php echo $k; ?>"><?php echo $v1['attr_value']; ?></a></dd>
+                      <?php endforeach; ?>
+                    </dl>
+                    <?php endforeach; ?>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <?php  $count=count($data);  $index= ceil($count/3); ?>
+            <!-- BEGIN PRODUCT LIST -->
+
+            <div class="row product-list">
+              <!-- PRODUCT ITEM START -->
+              <?php foreach ($data as $k => $v): ?>
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="product-item">
+                  <div class="pi-img-wrapper">
+                    <a href="<?php echo U('Index/goods',array('id'=>$v['id'])); ?>">  <img src="<?php Image($v['big_logo']); ?>" class="img-responsive" alt="<?php echo $v['goods_name']; ?>">
+                      </a>
+                  </div>
+                  <h3><a href="shop-item.html"><?php echo $v['goods_name']; ?></a></h3>
+                  <div class="pi-price"><?php echo $v['shop_price']; ?>元</div>
+                  <a href="<?php echo U('Index/goods',array('id'=>$v['id'])); ?>" class="btn btn-default add2cart">详情</a>
+                </div>
+              </div>
+              <?php endforeach; ?>
+              <!-- PRODUCT ITEM END -->
+            </div>
+
+            <!-- END PRODUCT LIST -->
+            <!-- BEGIN PAGINATOR -->
+            <div class="row">
+              <?php echo $page; ?>
+            </div>
+            <!-- END PAGINATOR -->
+          </div>
+          <!-- END CONTENT -->
+        </div>
+        <!-- END SIDEBAR & CONTENT -->
+      </div>
+    </div>
+

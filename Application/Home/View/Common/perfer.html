@@ -1,0 +1,23 @@
+<div class="row margin-bottom-40">
+    <div class="col-md-12 col-sm-12">
+        <h2>最受欢迎的产品</h2>
+        <div class="owl-carousel owl-carousel4">
+            <?php foreach ($bestGoods as $k => $v): ?>
+            <div>
+                <div class="product-item">
+                    <div class="pi-img-wrapper">
+                        <img src="<?php Image($v['big_logo']); ?>" class="img-responsive" alt="Berry Lace Dress">
+                            <div>
+
+                        </div>
+                    </div>
+                    <h3><a href="<?php echo U('Index/goods',array('id'=>$v['id'])); ?>"><?php echo $v['goods_name']; ?></a></h3>
+                    <div class="pi-price"><?php echo $v['shop_price']; ?>元</div>
+                    <a href="<?php echo U('Index/goods',array('id'=>$v['id'])); ?>" class="btn btn-default add2cart">详情</a>
+                    <div class="sticker sticker-new"></div>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</div>

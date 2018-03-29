@@ -1,0 +1,86 @@
+<layout name="Common/layout" />
+    <div class="main">
+      <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="">Member</a></li>
+            <li class="active">Regist</li>
+        </ul>
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40">
+          <!-- BEGIN CONTENT -->
+          <div class="col-md-12 col-sm-12">
+            <h1>Regist</h1>
+            <!-- BEGIN CHECKOUT PAGE -->
+            <div class="panel-group checkout-page accordion scrollable" id="checkout-page">
+
+              <!-- BEGIN CHECKOUT -->
+              <div id="checkout" class="panel panel-default">
+                <div class="panel-heading">
+                  <h2 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#checkout-page" href="#checkout-content" class="accordion-toggle">
+                     注册页面
+                    </a>
+                  </h2>
+                </div>
+                <div id="checkout-content" class="panel-collapse collapse in">
+                  <div class="panel-body row">
+
+                    <div class="col-md-6 col-sm-6">
+                      <h3>注册 用户 </h3>
+
+                      <form action="__SELF__" method="post">
+                        <div class="form-group">
+                          <label for="email-login">账号</label>
+                          <input type="text" id="email-login"  name="username" class="form-control">
+                        </div>
+                        <div class="form-group">
+                          <label for="password-login">密码</label>
+                          <input type="password" id="password-login" name="password"  class="form-control">
+                        </div>
+                        <div class="form-group">
+                          <label for="password-login">确认密码</label>
+                          <input type="password" id="password" name="cpassword"  class="form-control">
+                        </div>
+                        <div class="form-group">
+                          <label for="password-login">验证码</label>
+                          <input type="password" id="captcha-login" name="chkcode"  class="form-control">
+                          <img style="cursor:pointer;" onclick="this.src='<?php echo U('chkcode'); ?>#'+Math.random();" src="<?php echo U('chkcode'); ?>" />
+                        </div>
+                        <div class="form-group">
+                          <input type="checkbox" name="must_click" value="1" class="chb" checked="checked" /> 我已阅读并同意《用户注册协议》
+                        </div>
+
+
+                        <a href="javascript:;">忘记密码?</a>
+                        <div class="padding-top-20">                  
+                          <button class="btn btn-primary" type="submit">注册</button>
+                        </div>
+                        <hr>
+                        <div class="login-socio">
+                          <p class="text-muted">或者还可以使用其他方式登录:</p>
+                          <ul class="social-icons">
+                            <li><a href="javascript:;" data-original-title="facebook" class="facebook" title="facebook"></a></li>
+                            <li><a href="javascript:;" data-original-title="Twitter" class="twitter" title="Twitter"></a></li>
+                            <li><a href="javascript:;" data-original-title="Google Plus" class="googleplus" title="Google Plus"></a></li>
+                            <li><a href="javascript:;" data-original-title="Linkedin" class="linkedin" title="LinkedIn"></a></li>
+                          </ul>
+                        </div>
+                      </form>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <!-- END CHECKOUT -->
+
+
+              <!-- END CONFIRM -->
+            </div>
+            <!-- END CHECKOUT PAGE -->
+          </div>
+          <!-- END CONTENT -->
+        </div>
+        <!-- END SIDEBAR & CONTENT -->
+      </div>
+    </div>

@@ -1,0 +1,85 @@
+<layout name="Common/layout" />
+    <div class="main">
+      <div class="container">
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40">
+          <!-- BEGIN CONTENT -->
+          <div class="col-md-12 col-sm-12">
+            <h1>购物车</h1>
+            <?php $count=count($data)?>
+            <if condition="$count gt 0">
+            <div class="goods-page">
+              <div class="goods-data clearfix">
+                <div class="table-wrapper-responsive">
+                <table summary="Shopping cart">
+                  <tr>
+                    <th class="goods-page-image">名称</th>
+                    <th class="goods-page-image">图片</th>
+
+
+                    <th class="goods-page-quantity">单价</th>
+                    <th class="goods-page-price">	数量</th>
+                    <th class="goods-page-total" colspan="2">总价</th>
+                  </tr>
+                  <?php
+				$tp = 0; // 总价
+				foreach ($data as $k => $v): ?>
+                  <tr>
+                    <td class="goods-page-name">
+                      <strong ><span><?php echo $v['goods_name']; ?></span></strong>
+                    </td>
+                    <input type="hidden" id="goods_id" value="{$v[goods_id]}">
+                    <input type="hidden" id="goods_attr_id" value="{$v[goods_attr_id]}">
+
+                    <td class="goods-page-image">
+                      <a href="javascript:;"><img src="<?php Image($v['mid_logo']); ?>" alt="<?php echo $v['goods_name']; ?>"></a>
+                    </td>
+
+                    <td class="goods-page-price">
+                      <strong ><span><?php echo $v['shop_price']; ?></span>元</strong>
+                    </td>
+                    <td class="goods-page-quantity">
+                      <div class="product-quantity">
+                          <input id="product-quantity" type="text" value="<?php echo $v['goods_number']; ?>" readonly class="form-control input-sm">
+                      </div>
+
+                    </td>
+
+                    <td class="goods-page-total">
+                      <strong ><span><?php $xj = $v['shop_price'] * $v['goods_number'];$tp+=$xj;echo $xj; ?>.00</span>元</strong>
+                    </td>
+                    <td class="del-goods-col">
+                      <a href="javascript:void(0);" class="del-goods" onclick="del_cartGoods({$v.goods_id},this,'{$v.goods_attr_id}')">&nbsp;</a>
+                    </td>
+                  </tr>
+                  <?php endforeach; ?>
+
+                </table>
+                </div>
+
+                <div class="shopping-total">
+                  <ul>
+
+                    <li class="shopping-total-price">
+                      <em>总价</em>
+                      <strong class="price"><span><?php echo $tp; ?></span>元</strong>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <a class="btn btn-default"   href="<?php echo U('Index/index'); ?>" type="submit">继续购物 <i class="fa fa-shopping-cart"></i></a>
+              <a class="btn btn-primary" href="<?php echo U('Order/add'); ?>" type="submit">结算 <i class="fa fa-check"></i></a>
+            </div>
+              <else /><h2>当前购物车没有商品</h2>
+              <a class="btn btn-default"   href="<?php echo U('Index/index'); ?>" type="submit">继续购物 <i class="fa fa-shopping-cart"></i></a>
+            </if>
+          </div>
+          <!-- END CONTENT -->
+        </div>
+        <!-- END SIDEBAR & CONTENT -->
+
+        <!-- BEGIN SIMILAR PRODUCTS -->
+        <include file="Common/perfer" />
+        <!-- END SIMILAR PRODUCTS -->
+      </div>
+    </div>

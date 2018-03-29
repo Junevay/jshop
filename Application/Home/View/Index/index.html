@@ -1,0 +1,140 @@
+<layout name="Common/layout" />
+<include file="Common/silder" />
+    <div class="main">
+      <div class="container">
+        <!-- 最新商品 -->
+
+
+        <!-- END SALE PRODUCT & NEW ARRIVALS -->
+          <div class="row margin-bottom-40">
+              <!-- BEGIN SALE PRODUCT -->
+              <div class="col-md-12 sale-product">
+                  <h2>最新商品</h2>
+
+                  <div class="owl-carousel owl-carousel5">
+                      <?php foreach ($goods2 as $k => $v): ?>
+                      <div>
+                          <div class="product-item">
+                              <div class="pi-img-wrapper">
+                                  <a href="<?php echo U('Index/goods',array('id'=>$v['id'])); ?>">  <img src="<?php Image($v['big_logo']); ?>" class="img-responsive" alt="Berry Lace Dress"></a>
+                              </div>
+                              <h3><a href="<?php echo U('Index/goods',array('id'=>$v['id'])); ?>"><?php echo $v['goods_name']; ?></a></h3>
+                              <div class="pi-price"><?php echo $v['shop_price']; ?>元</div>
+                              <a href="<?php echo U('Index/goods',array('id'=>$v['id'])); ?>" class="btn btn-default add2cart">详情</a>
+                              <div class="sticker sticker-sale"></div>
+                          </div>
+                      </div>
+                      <?php endforeach; ?>
+                  </div>
+
+              </div>
+              <!-- END SALE PRODUCT -->
+          </div>
+		  <div class="row margin-bottom-40">
+			  <!-- BEGIN SALE PRODUCT -->
+			  <div class="col-md-12 sale-product">
+				  <h2>热卖商品</h2>
+
+				  <div class="owl-carousel owl-carousel5">
+					  <?php foreach ($goods3 as $k => $v): ?>
+					  <div>
+						  <div class="product-item">
+							  <div class="pi-img-wrapper">
+                                  <a href="<?php echo U('Index/goods',array('id'=>$v['id'])); ?>">  <img src="<?php Image($v['big_logo']); ?>" class="img-responsive" alt="Berry Lace Dress"></a>
+							  </div>
+							  <h3><a href="<?php echo U('Index/goods',array('id'=>$v['id'])); ?>"><?php echo $v['goods_name']; ?></a></h3>
+							  <div class="pi-price"><?php echo $v['shop_price']; ?>元</div>
+							  <a href="<?php echo U('Index/goods',array('id'=>$v['id'])); ?>" class="btn btn-default add2cart">详情</a>
+							  <div class="sticker sticker-sale"></div>
+						  </div>
+					  </div>
+					  <?php endforeach; ?>
+				  </div>
+
+			  </div>
+			  <!-- END SALE PRODUCT -->
+		  </div>
+
+          <div class="row margin-bottom-40">
+              <!-- BEGIN SALE PRODUCT -->
+              <div class="col-md-12 sale-product">
+                  <h2>推荐商品</h2>
+
+                  <div class="owl-carousel owl-carousel5">
+                      <?php foreach ($goods4 as $k => $v): ?>
+                      <div>
+                          <div class="product-item">
+                              <div class="pi-img-wrapper">
+                                  <a href="<?php echo U('Index/goods',array('id'=>$v['id'])); ?>">  <img src="<?php Image($v['big_logo']); ?>" class="img-responsive" alt="Berry Lace Dress"></a>
+                              </div>
+                              <h3><a href="<?php echo U('Index/goods',array('id'=>$v['id'])); ?>"><?php echo $v['goods_name']; ?></a></h3>
+                              <div class="pi-price"><?php echo $v['shop_price']; ?>元</div>
+                              <a href="<?php echo U('Index/goods',array('id'=>$v['id'])); ?>" class="btn btn-default add2cart">详情</a>
+                              <div class="sticker sticker-sale"></div>
+                          </div>
+                      </div>
+                      <?php endforeach; ?>
+                  </div>
+
+              </div>
+              <!-- END SALE PRODUCT -->
+          </div>
+
+              <!-- BEGIN SALE PRODUCT -->
+
+              <!-- END SALE PRODUCT -->
+
+        <!-- BEGIN TWO PRODUCTS & PROMO -->
+        <div class="row margin-bottom-35 ">
+          <!-- BEGIN TWO PRODUCTS -->
+          <div class="col-md-6 two-items-bottom-items">
+            <h2>抢购商品</h2>
+            <div class="owl-carousel owl-carousel2">
+
+                <?php foreach ($goods1 as $k => $v): ?>
+                <div>
+                    <div class="product-item">
+                        <div class="pi-img-wrapper">
+                            <a href="<?php echo U('Index/goods',array('id'=>$v['id'])); ?>">  <img src="<?php Image($v['big_logo']); ?>" class="img-responsive" alt="Berry Lace Dress"></a>
+                        </div>
+                        <h3><a href="<?php echo U('Index/goods',array('id'=>$v['id'])); ?>"><?php echo $v['goods_name']; ?></a></h3>
+                        <div class="pi-price"><?php echo $v['promote_price']; ?>元</div>
+                        <a href="<?php echo U('Index/goods',array('id'=>$v['id'])); ?>" class="btn btn-default add2cart">详情</a>
+                        <div class="sticker sticker-sale"></div>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+
+            </div>
+          </div>
+          <!-- END TWO PRODUCTS -->
+          <!-- BEGIN PROMO -->
+          <div class="col-md-6 shop-index-carousel">
+            <div class="content-slider">
+              <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                  <li data-target="#myCarousel" data-slide-to="1"></li>
+                  <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                  <div class="item active">
+                    <img src="__PUBLIC__/assets/pages/img/index-sliders/slide1.jpg" class="img-responsive" alt="Berry Lace Dress">
+                  </div>
+                  <div class="item">
+                    <img src="__PUBLIC__/assets/pages/img/index-sliders/slide2.jpg" class="img-responsive" alt="Berry Lace Dress">
+                  </div>
+                  <div class="item">
+                    <img src="__PUBLIC__/assets/pages/img/index-sliders/slide3.jpg" class="img-responsive" alt="Berry Lace Dress">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- END PROMO -->
+        </div>
+        <!-- END TWO PRODUCTS & PROMO -->
+      </div>
+    </div>
+

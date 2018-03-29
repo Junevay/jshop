@@ -1,0 +1,211 @@
+<layout name="Common/layout" />
+    <div class="main">
+      <div class="container">
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40">
+          <div class="col-md-12 col-sm-12">
+            <form action="__SELF__" method="POST" class="none" name="address_form">
+            <h3>Your Address</h3>
+            <div class="form-group">
+              <label for=""><span class="require">*</span>收 货 人 ：</label>
+              <input type="text" name="shr_name" class="txt" />
+            </div>
+
+            <div class="form-group">
+              <label for=""><span class="require">*</span>手机号码：</label>
+              <input type="text" name="shr_tel" class="txt" />
+            </div>
+
+            <div class="form-group ">
+              <label for="">所在地区：<span class="require">*</span></label>
+              <select name="shr_province" id="">
+                <option value="">请选择</option>
+                <option value="北京">北京</option>
+                <option value="上海">上海</option>
+                <option value="天津">天津</option>
+                <option value="重庆">重庆</option>
+                <option value="武汉">武汉</option>
+              </select>
+              <select name="shr_city" id="">
+                <option value="">请选择</option>
+                <option value="朝阳区">朝阳区</option>
+                <option value="东城区">东城区</option>
+                <option value="西城区">西城区</option>
+                <option value="海淀区">海淀区</option>
+                <option value="昌平区">昌平区</option>
+              </select>
+              <select name="shr_area" id="">
+                <option value="">请选择</option>
+                <option value="西二旗">西二旗</option>
+                <option value="西三旗">西三旗</option>
+                <option value="三环以内">三环以内</option>
+              </select>
+
+            </div>
+            <div class="form-group">
+              <label for=""><span class="require">*</span>详细地址：</label>
+              <input type="text" name="shr_address" class="txt address"  />
+            </div>
+            </form>
+          </div>
+          <!-- BEGIN CONTENT -->
+          <div class="col-md-12 col-sm-12">
+            <h1>Confirm Order </h1>
+            <div class="goods-page">
+              <div class="goods-data clearfix">
+                <div class="table-wrapper-responsive">
+                <table summary="Shopping cart">
+                  <tr>
+                    <th class="goods-page-image">Name</th>
+                    <th class="goods-page-image">Image</th>
+                    <th class="goods-page-description">Description</th>
+
+                    <th class="goods-page-quantity">UNIT PRICE</th>
+                    <th class="goods-page-price">	QUANTITY</th>
+                    <th class="goods-page-total" colspan="2">Total</th>
+                  </tr>
+                  <?php
+				$tp = 0; // 总价
+				foreach ($data as $k => $v): ?>
+                  <tr>
+                    <td class="goods-page-name">
+                      <strong ><span><?php echo $v['goods_name']; ?></span></strong>
+                    </td>
+
+                    <td class="goods-page-image">
+                      <a href="javascript:;"><img src="<?php Image($v['mid_logo']); ?>" alt="<?php echo $v['goods_name']; ?>"></a>
+                    </td>
+                    <td class="goods-page-description">
+                      <?php foreach ($v['gaData'] as $k1 => $v1): ?>
+                      <p><?php echo $v1['attr_name']; ?>：<?php echo $v1['attr_value']; ?></p>
+                      <?php endforeach; ?>
+                    </td>
+                    <td class="goods-page-price">
+                      <strong >$<span><?php echo $v['shop_price']; ?></span></strong>
+                    </td>
+                    <td class="goods-page-quantity">
+                      <strong ><span><?php echo $v['goods_number']; ?></span></strong>
+
+                    </td>
+
+                    <td class="goods-page-total">
+                      <strong >$<span><?php $xj = $v['shop_price'] * $v['goods_number'];$tp+=$xj;echo $xj; ?></span></strong>
+                    </td>
+
+                  </tr>
+                  <?php endforeach; ?>
+
+                </table>
+                </div>
+
+                <div class="shopping-total">
+                  <ul>
+
+                    <li class="shopping-total-price">
+                      <em>Total</em>
+                      <strong class="price">$<span><?php echo $tp; ?></span></strong>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <a class="btn btn-default"   href="<?php echo U('Index/index'); ?>" type="submit">Continue shopping <i class="fa fa-shopping-cart"></i></a>
+              <a class="btn btn-primary"  onclick="document.forms['address_form'].submit();" href="javascript:void(0);" type="submit">提交订单 <i class="fa fa-check"></i></a>
+            </div>
+
+
+          </div>
+          <!-- END CONTENT -->
+</div>
+        <!-- END SIDEBAR & CONTENT -->
+        <!-- BEGIN SIMILAR PRODUCTS -->
+        <div class="row margin-bottom-40">
+          <div class="col-md-12 col-sm-12">
+            <h2>最受欢迎的产品</h2>
+            <div class="owl-carousel owl-carousel4">
+              <div>
+                <div class="product-item">
+                  <div class="pi-img-wrapper">
+                    <img src="__PUBLIC__/assets/pages/img/products/k1.jpg" class="img-responsive" alt="Berry Lace Dress">
+                    <div>
+
+                    </div>
+                  </div>
+                  <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
+                  <div class="pi-price">$29.00</div>
+                  <a href="javascript:;" class="btn btn-default add2cart">详情</a>
+                  <div class="sticker sticker-new"></div>
+                </div>
+              </div>
+              <div>
+                <div class="product-item">
+                  <div class="pi-img-wrapper">
+                    <img src="__PUBLIC__/assets/pages/img/products/k2.jpg" class="img-responsive" alt="Berry Lace Dress">
+                    <div>
+
+                    </div>
+                  </div>
+                  <h3><a href="shop-item.html">Berry Lace Dress2</a></h3>
+                  <div class="pi-price">$29.00</div>
+                  <a href="javascript:;" class="btn btn-default add2cart">详情</a>
+                </div>
+              </div>
+              <div>
+                <div class="product-item">
+                  <div class="pi-img-wrapper">
+                    <img src="__PUBLIC__/assets/pages/img/products/k3.jpg" class="img-responsive" alt="Berry Lace Dress">
+                    <div>
+
+                    </div>
+                  </div>
+                  <h3><a href="shop-item.html">Berry Lace Dress3</a></h3>
+                  <div class="pi-price">$29.00</div>
+                  <a href="javascript:;" class="btn btn-default add2cart">详情</a>
+                </div>
+              </div>
+              <div>
+                <div class="product-item">
+                  <div class="pi-img-wrapper">
+                    <img src="__PUBLIC__/assets/pages/img/products/k4.jpg" class="img-responsive" alt="Berry Lace Dress">
+                    <div>
+
+                    </div>
+                  </div>
+                  <h3><a href="shop-item.html">Berry Lace Dress4</a></h3>
+                  <div class="pi-price">$29.00</div>
+                  <a href="javascript:;" class="btn btn-default add2cart">详情</a>
+                  <div class="sticker sticker-sale"></div>
+                </div>
+              </div>
+              <div>
+                <div class="product-item">
+                  <div class="pi-img-wrapper">
+                    <img src="__PUBLIC__/assets/pages/img/products/k1.jpg" class="img-responsive" alt="Berry Lace Dress">
+                    <div>
+
+                    </div>
+                  </div>
+                  <h3><a href="shop-item.html">Berry Lace Dress5</a></h3>
+                  <div class="pi-price">$29.00</div>
+                  <a href="javascript:;" class="btn btn-default add2cart">详情</a>
+                </div>
+              </div>
+              <div>
+                <div class="product-item">
+                  <div class="pi-img-wrapper">
+                    <img src="__PUBLIC__/assets/pages/img/products/k2.jpg" class="img-responsive" alt="Berry Lace Dress">
+                    <div>
+
+                    </div>
+                  </div>
+                  <h3><a href="shop-item.html">Berry Lace Dress6</a></h3>
+                  <div class="pi-price">$29.00</div>
+                  <a href="javascript:;" class="btn btn-default add2cart">详情</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- END SIMILAR PRODUCTS -->
+      </div>
+    </div>

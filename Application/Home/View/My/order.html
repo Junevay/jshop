@@ -1,0 +1,176 @@
+<layout name="Common/layout" />
+    <div class="main">
+      <div class="container">
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40">
+          <!-- BEGIN CONTENT -->
+          <div class="col-md-12 col-sm-12">
+            <h1>我的订单</h1>
+            <?php $count=count($data)?>
+            <if condition="$count gt 0">
+            <div class="goods-page">
+              <div class="goods-data clearfix">
+                <div class="table-wrapper-responsive">
+                <table summary="Shopping cart">
+                  <tr>
+
+                    <th class="goods-page-image">订单号</th>
+                    <th class="goods-page-image">订单商品</th>
+                    <th class="goods-page-description">收货人</th>
+                    <th class="goods-page-quantity">订单金额</th>
+                    <th class="goods-page-price">	订单状态</th>
+                    <th class="goods-page-total" >下单时间</th>
+                    <th class="goods-page-total" >操作</th>
+                  </tr>
+
+				<?php foreach ($data['data'] as $k => $v): ?>
+                  <tr>
+                    <td class="goods-page-name">
+                      <strong ><span><?php echo $v['id']; ?></span></strong>
+                    </td>
+
+                    <td class="goods-page-image">
+                      <strong><?php echo $v['name']; ; ?></strong>
+                    </td>
+                    <td class="goods-page-description">
+                      <strong > <?php echo $v['shr_name']; ?></strong >
+                    </td>
+                    <td class="goods-page-price">
+                      <strong ><span><?php echo $v['total_price']; ?></span>元</strong>
+                    </td>
+
+
+                    <td class="goods-page-total">
+                      <strong ><span><?php echo date('Y-m-d H:i:s', $v['addtime']); ?></span></strong>
+                    </td>
+                    <td class="goods-page-total">
+                      <strong ><span>	<?php if($v['pay_status'] == '是'): ?>
+                        已支付
+                        <?php else: ?>
+                        <?php echo makeAlipayBtn($v['id']); ?>
+                        <?php endif; ?></span></strong>
+                    </td>
+                    <td class="goods-page-total">
+                      <?php if($v['pay_status'] == '否'): ?>
+                      <a href="">查看</a> | <a href="">取消定单</a>
+                      <?php endif; ?>
+                    </td>
+
+                  </tr>
+                  <?php endforeach; ?>
+
+                </table>
+                </div>
+
+                <div class="shopping-total">
+                  <ul>
+
+
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+              <else /><h2>当前订单没有订单</h2>
+
+            </if>
+          </div>
+          <a class="btn btn-default"   href="<?php echo U('Index/index'); ?>" type="submit">继续购物 <i class="fa fa-shopping-cart"></i></a>
+          <!-- END CONTENT -->  <div class="row">
+          <?php echo $page; ?>
+        </div>
+
+        </div>
+        <!-- END SIDEBAR & CONTENT -->
+
+        <!-- BEGIN SIMILAR PRODUCTS -->
+        <div class="row margin-bottom-40">
+          <div class="col-md-12 col-sm-12">
+            <h2>最受欢迎的产品</h2>
+            <div class="owl-carousel owl-carousel4">
+              <div>
+                <div class="product-item">
+                  <div class="pi-img-wrapper">
+                    <img src="__PUBLIC__/assets/pages/img/products/k1.jpg" class="img-responsive" alt="Berry Lace Dress">
+                    <div>
+
+                    </div>
+                  </div>
+                  <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
+                  <div class="pi-price">$29.00</div>
+                  <a href="javascript:;" class="btn btn-default add2cart">详情</a>
+                  <div class="sticker sticker-new"></div>
+                </div>
+              </div>
+              <div>
+                <div class="product-item">
+                  <div class="pi-img-wrapper">
+                    <img src="__PUBLIC__/assets/pages/img/products/k2.jpg" class="img-responsive" alt="Berry Lace Dress">
+                    <div>
+
+                    </div>
+                  </div>
+                  <h3><a href="shop-item.html">Berry Lace Dress2</a></h3>
+                  <div class="pi-price">$29.00</div>
+                  <a href="javascript:;" class="btn btn-default add2cart">详情</a>
+                </div>
+              </div>
+              <div>
+                <div class="product-item">
+                  <div class="pi-img-wrapper">
+                    <img src="__PUBLIC__/assets/pages/img/products/k3.jpg" class="img-responsive" alt="Berry Lace Dress">
+                    <div>
+
+                    </div>
+                  </div>
+                  <h3><a href="shop-item.html">Berry Lace Dress3</a></h3>
+                  <div class="pi-price">$29.00</div>
+                  <a href="javascript:;" class="btn btn-default add2cart">详情</a>
+                </div>
+              </div>
+              <div>
+                <div class="product-item">
+                  <div class="pi-img-wrapper">
+                    <img src="__PUBLIC__/assets/pages/img/products/k4.jpg" class="img-responsive" alt="Berry Lace Dress">
+                    <div>
+
+                    </div>
+                  </div>
+                  <h3><a href="shop-item.html">Berry Lace Dress4</a></h3>
+                  <div class="pi-price">$29.00</div>
+                  <a href="javascript:;" class="btn btn-default add2cart">详情</a>
+                  <div class="sticker sticker-sale"></div>
+                </div>
+              </div>
+              <div>
+                <div class="product-item">
+                  <div class="pi-img-wrapper">
+                    <img src="__PUBLIC__/assets/pages/img/products/k1.jpg" class="img-responsive" alt="Berry Lace Dress">
+                    <div>
+
+                    </div>
+                  </div>
+                  <h3><a href="shop-item.html">Berry Lace Dress5</a></h3>
+                  <div class="pi-price">$29.00</div>
+                  <a href="javascript:;" class="btn btn-default add2cart">详情</a>
+                </div>
+              </div>
+              <div>
+                <div class="product-item">
+                  <div class="pi-img-wrapper">
+                    <img src="__PUBLIC__/assets/pages/img/products/k2.jpg" class="img-responsive" alt="Berry Lace Dress">
+                    <div>
+
+                    </div>
+                  </div>
+                  <h3><a href="shop-item.html">Berry Lace Dress6</a></h3>
+                  <div class="pi-price">$29.00</div>
+                  <a href="javascript:;" class="btn btn-default add2cart">详情</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- END SIMILAR PRODUCTS -->
+      </div>
+    </div>

@@ -1,0 +1,171 @@
+<layout name="Common/layout" />
+
+    <div class="main">
+      <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="<?php echo U('Index/index')?>">首页</a></li>
+          <?php
+
+			// 倒的循环输出
+			$count = count($catPath);
+			for($i=$count-1; $i>=0; $i--): ?>
+          <li><a href=""><?php echo $catPath[$i]['cat_name']; ?></a> </li>
+          <?php endfor; ?>
+
+
+            <li class="active"> <?php echo $info['goods_name']; ?></li>
+        </ul>
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40">
+          <!-- BEGIN SIDEBAR -->
+          <include file="Common/siderbar" />
+          <!-- END SIDEBAR -->
+
+          <!-- BEGIN CONTENT -->
+          <div class="col-md-9 col-sm-7">
+            <div class="product-page">
+              <div class="row">
+                <div class="col-md-6 col-sm-6">
+                  <div class="product-main-image">
+                    <img src="<?php echo $viewPath . $info['mbig_logo']; ?>" alt="<?php echo $viewPath . $info['goods_name']; ?>" class="img-responsive" data-BigImgsrc="<?php echo $viewPath . $info['mbig_logo']; ?>">
+                  </div>
+
+                </div>
+                <div class="col-md-6 col-sm-6">
+                  <h1><?php echo $info['goods_name']; ?></h1>
+                  <div class="price-availability-block clearfix">
+                    <div class="price">
+                      <strong><span></span><?php echo $info['shop_price']; ?>元</strong>
+                      <em><span><?php echo $info['market_price']; ?></span>元</em>
+                    </div>
+
+                  </div>
+                  <div class="description">
+                    <p><?php echo $info['goods_desc']; ?>
+                    </p>
+                  </div>
+                  <form  method="post"  id="cartForm" class="choose">
+                    <input type="hidden" name="goods_id" value="<?php echo $info['id']; ?>" />
+                  <div class="product-page-options">
+                    <?php foreach ($mulArr as $k => $v): ?>
+                    <div class="pull-left">
+                      <label class="control-label"><?php echo $k; ?>:</label>
+
+                        <?php foreach ($v as $k1 => $v1): ?>
+
+
+                        <label>
+                          <input  <?php if($k1==0) echo 'checked="checked"'; ?>  type="radio"  name="goods_attr_id[<?php echo $v1['attr_id']; ?>]" value="<?php echo $v1['id']; ?>"><?php echo $v1['attr_value']; ?>
+                        </label>
+
+                      <?php endforeach; ?>
+                    </div>
+                    <?php endforeach; ?>
+                  </div>
+                  <div class="product-page-cart">
+                    <div class="product-quantity">
+                        <input id="product-quantity" type="text"  name="goods_number" value="1" readonly class="form-control input-sm">
+                    </div>
+
+                    <a class="layui-btn btn btn-primary" lay-filter="addCart" lay-submit="">
+                      加入购物车
+                    </a>
+                  </div>
+                  </form>
+                  <div class="review">
+                    <div class="rateit" data-rateit-value="2.5" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <div class="product-page-content">
+                  <ul id="myTab" class="nav nav-tabs">
+                    <li><a href="#Description" data-toggle="tab">描述</a></li>
+                    <li><a href="#Information" data-toggle="tab">信息</a></li>
+                    <li class="active"><a href="#Reviews" data-toggle="tab">评论</a></li>
+                  </ul>
+                  <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade" id="Description">
+                      <p><?php echo $info['goods_desc']; ?></p>
+                    </div>
+                    <div class="tab-pane fade" id="Information">
+                      <table class="datasheet">
+                        <tr>
+                          <th colspan="2">商品 信息</th>
+                        </tr>
+                        <tr>
+                          <?php foreach ($uniArr as $k => $v): ?>
+                          <td class="datasheet-features-type"><?php echo $v['attr_name']; ?></td>
+                          <td><?php echo $v['attr_value']; ?></td>
+                          <?php endforeach; ?>
+                        </tr>
+
+                      </table>
+                    </div>
+                    <div class="tab-pane fade in active" id="Reviews">
+                      <!--<p>There are no reviews for this product.</p>-->
+                      <?php foreach ($ComData['data'] as $k => $v): ?>
+                      <div class="review-item clearfix">
+                        <div class="review-item-submitted">
+                          <strong>{$v.name}</strong>
+                          <em>{$v.addtime}</em>
+                          <div class="rateit" data-rateit-value="{$v.star}" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+                        </div>
+                        <div class="review-item-content">
+                            <p>{$v.content}</p>
+                        </div>
+                      </div>
+                      <?php endforeach; ?>
+                      <!-- 分页信息 start -->
+                      <div class="Pagination">
+
+                        <for start="1" end="$ComData['pageCount']">
+                          <a href="<?php echo U('Index/goods',array('id'=>$info['id']),FALSE); ?>/p/{$i}">{$i}</a>
+                        </for>
+                      </div>
+                      <!-- BEGIN FORM-->
+                      <form action="<?php echo U('Comment/add'); ?>" id="comment_form" class="reviews-form"  method="post" role="form">
+                        <input type="hidden" name="goods_id" value="<?php echo $info['id']; ?>" />
+                        <h2>写评论</h2>
+                        <div class="form-group">
+                          <label for="name">姓名 <span class="require">*</span></label>
+                          <input type="text" class="form-control"  name='name'  id="name">
+                        </div>
+                        <div class="form-group">
+                          <label for="email">邮箱</label>
+                          <input type="text" class="form-control" id="email" name="email">
+                        </div>
+                        <div class="form-group">
+                          <label for="review">评论 <span class="require">*</span></label>
+                          <textarea class="form-control" name="content" rows="8" id="review"></textarea>
+                        </div>
+                        <div class="form-group">
+                          <label for="email">星级</label>
+                          <input type="range" value="4" step="0.25"  name="star"  id="backing5">
+                          <div class="rateit" data-rateit-backingfld="#backing5" data-rateit-resetable="false"  data-rateit-ispreset="true" data-rateit-min="0" data-rateit-max="5">
+                          </div>
+                        </div>
+                        <div class="padding-top-20">
+                          <button type="submit" id="comment_btn"   class="btn btn-primary">发送</button>
+                        </div>
+                      </form>
+                      <!-- END FORM-->
+                    </div>
+                  </div>
+                </div>
+
+                <div class="sticker sticker-sale"></div>
+              </div>
+            </div>
+          </div>
+          <!-- END CONTENT -->
+        </div>
+        <!-- END SIDEBAR & CONTENT -->
+
+        <!-- BEGIN SIMILAR PRODUCTS -->
+        <include file="Common/perfer" />
+        <!-- END SIMILAR PRODUCTS -->
+      </div>
+    </div>

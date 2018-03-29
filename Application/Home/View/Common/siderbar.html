@@ -1,0 +1,17 @@
+<div class="sidebar col-md-3 col-sm-5">
+
+
+    <div class="sidebar-products clearfix">
+        <h2>畅销产品</h2>
+        <?php foreach ($hotGoods as $k => $v): ?>
+        <div class="item">
+
+            <a href="<?php echo U('Index/goods',array('id'=>$v['id'])); ?>"><img src="<?php Image($v['big_logo']); ?>" alt="<?php echo $v['goods_name']; ?>"></a>
+            <h3><a href="<?php echo U('Index/goods',array('id'=>$v['id'])); ?>"><?php echo $v['goods_name']; ?></a></h3>
+            <div class="price"><?php echo $v['shop_price']; ?>元</div>
+
+        </div>
+        <?php endforeach; ?>
+
+    </div>
+</div>
